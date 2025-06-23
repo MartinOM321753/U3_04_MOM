@@ -32,7 +32,6 @@ public class InitialDataConfig {
         Role adminRole = roleRepository.findByname("ADMIN_ROLE")
                 .orElseGet(() -> roleRepository.save(new Role(null, "ADMIN_ROLE")));
 
-        // Crea los objetos Cede usando setters
         Cede cede1 = new Cede();
         cede1.setEstado("Estado1");
         cede1.setMunicipio("Municipio1");

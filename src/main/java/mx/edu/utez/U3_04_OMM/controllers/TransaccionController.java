@@ -1,5 +1,6 @@
 package mx.edu.utez.U3_04_OMM.controllers;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import mx.edu.utez.U3_04_OMM.DTO.SalesDto;
 import mx.edu.utez.U3_04_OMM.config.ApiResponse;
@@ -15,12 +16,12 @@ public class TransaccionController {
 
     private final TransaccionService transaccionService;
 
-    @PostMapping
-    public ResponseEntity<ApiResponse> create(@Validated @RequestBody SalesDto dto) {
+    @PostMapping("/")
+    public ResponseEntity<ApiResponse> create(@Valid @RequestBody SalesDto dto) {
         return transaccionService.create(dto);
     }
 
-    @GetMapping
+    @GetMapping("/")
     public ResponseEntity<ApiResponse> findAll() {
         return transaccionService.findAll();
     }
@@ -31,7 +32,7 @@ public class TransaccionController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ApiResponse> update(@Validated @PathVariable Long id, @RequestBody SalesDto dto) {
+    public ResponseEntity<ApiResponse> update( @PathVariable Long id, @Valid @RequestBody SalesDto dto) {
         return transaccionService.update(id, dto);
     }
 

@@ -1,5 +1,7 @@
 package mx.edu.utez.U3_04_OMM.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,6 +14,8 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+
 public class Cliente {
 
     @Id
@@ -27,9 +31,13 @@ public class Cliente {
 
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false, unique = true)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+
     private User user;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnoreProperties("cliente")
     private List<Transaccion> transacciones;
 
 

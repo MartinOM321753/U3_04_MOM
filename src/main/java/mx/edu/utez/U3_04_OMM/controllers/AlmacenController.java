@@ -1,4 +1,5 @@
 package mx.edu.utez.U3_04_OMM.controllers;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import mx.edu.utez.U3_04_OMM.DTO.AlmacenDTO;
 import mx.edu.utez.U3_04_OMM.config.ApiResponse;
@@ -28,12 +29,12 @@ public class AlmacenController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<ApiResponse> create(@RequestBody AlmacenDTO almacen) {
+    public ResponseEntity<ApiResponse> create(@Valid @RequestBody AlmacenDTO almacen) {
         return almacenService.save(almacen.toEntity());
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ApiResponse> update(@PathVariable Long id, @RequestBody AlmacenDTO almacen) {
+    public ResponseEntity<ApiResponse> update(@PathVariable Long id, @Valid @RequestBody AlmacenDTO almacen) {
         return almacenService.update(id, almacen.toEntity());
     }
 

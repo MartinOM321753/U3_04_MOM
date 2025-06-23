@@ -1,5 +1,6 @@
 package mx.edu.utez.U3_04_OMM.config;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,6 +31,7 @@ public class ApiResponse {
         this.message = message;
     }
 
+    @JsonIgnore
     public Object getData() {
         return this.object;
     }

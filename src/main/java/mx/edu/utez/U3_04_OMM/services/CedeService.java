@@ -43,12 +43,12 @@ public class CedeService {
     @Transactional(rollbackFor = Exception.class)
     public ResponseEntity<ApiResponse> save(Cede cede) {
         try {
-            Cede saved = cedeRepository.saveAndFlush(cede);
+            Cede saved = cedeRepository.save(cede);
 
             String claveGenerada = generarClaveCede(saved.getId());
             saved.setClave(claveGenerada);
 
-            cedeRepository.save(saved);
+            cedeRepository.saveAndFlush(saved);
 
             return ResponseEntity.ok(new ApiResponse(saved, HttpStatus.OK, "Cede guardada correctamente"));
         } catch (Exception e) {

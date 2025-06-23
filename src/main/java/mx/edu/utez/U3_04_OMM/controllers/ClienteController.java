@@ -1,6 +1,7 @@
 package mx.edu.utez.U3_04_OMM.controllers;
 
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import mx.edu.utez.U3_04_OMM.DTO.ClienteDTO;
 import mx.edu.utez.U3_04_OMM.config.ApiResponse;
@@ -32,12 +33,12 @@ public class ClienteController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<ApiResponse> create(@Validated @RequestBody ClienteDTO cliente) {
+    public ResponseEntity<ApiResponse> create(@Valid @RequestBody ClienteDTO cliente) {
         return clienteService.save(cliente.toEntity());
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ApiResponse> update(@Validated @PathVariable Long id, @RequestBody ClienteDTO cliente) {
+    public ResponseEntity<ApiResponse> update(@PathVariable Long id, @Valid @RequestBody ClienteDTO cliente) {
         return clienteService.update(id, cliente.toEntity());
     }
 

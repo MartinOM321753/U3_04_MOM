@@ -1,6 +1,7 @@
 package mx.edu.utez.U3_04_OMM.controllers;
 
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import mx.edu.utez.U3_04_OMM.DTO.CedeDTO;
 import mx.edu.utez.U3_04_OMM.config.ApiResponse;
@@ -32,12 +33,12 @@ public class CedeController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<ApiResponse> create(@Validated @RequestBody CedeDTO cede) {
+    public ResponseEntity<ApiResponse> create(@Valid @RequestBody CedeDTO cede) {
         return cedeService.save(cede.toEntity());
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ApiResponse> update(@Validated @PathVariable Long id, @RequestBody CedeDTO cede) {
+    public ResponseEntity<ApiResponse> update(@Valid @PathVariable Long id, @RequestBody CedeDTO cede) {
         return cedeService.update(id, cede.toEntity());
     }
 
